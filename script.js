@@ -220,8 +220,8 @@ async function fetchAndStore(key, url, property = null) {
       <div class="post-tags">Tags: ${post.tags.length > 0 ? post.tags.join(', ') : 'No tags'}</div>
       <div class="post-author">Created by: ${user.firstName} ${user.lastName}</div>
       <div class="reactions">
-        <button id="likeBtn">Like</button>
-        <button id="dislikeBtn">Dislike</button>
+        <button id="likeBtn">Like&#128077</button>
+        <button id="dislikeBtn">Dislike&#128078;</button>
         <div>Reactions: <span id="reactionCount">${post.reactions.likes + post.reactions.dislikes}</span></div>
       </div>
       <h3>Comments</h3>
