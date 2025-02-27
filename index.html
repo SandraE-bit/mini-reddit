@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Reddit</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Mini Reddit Clone</h1>
+  <div id="postsContainer"></div>
+
+  <h2>Create a new post</h2>
+  <form id="newPostForm">
+    <input type="text" id="postTitle" placeholder="Title" required>
+    <textarea id="postBody" placeholder="Content&#128393;" required></textarea>
+    <input type="text" id="postTags" placeholder="Tags (Separated by comma)" required>
+    <label for="postUser">Select a user:</label>
+    <select id="postUser" required>
+      <option value="">Select user</option>
+    </select>
+    <button type="submit">Send</button>
+  </form>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
