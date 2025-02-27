@@ -1,49 +1,48 @@
-
 async function fetchAndStore(key, url, property = null) {
-    if (!localStorage.getItem(key)) {
-      try {
-        const res = await fetch(url);
-        if (!res.ok) {
-          throw new Error(`HTTP error! Status: ${res.status}`);
-        }
-        const data = await res.json();
-        if (!data || (property && !data[property])) {
-          throw new Error(`Invalid data format for ${key}`);
-        }
-        const value = property ? data[property] : data;
-        localStorage.setItem(key, JSON.stringify(value));
-        console.log(`${key} fetched and stored successfully!`);
-      } catch (error) {
-        console.error(`Error fetching ${key}:`, error);
+  if (!localStorage.getItem(key)) {
+    try {
+      const res = await fetch(url);
+      if (!res.ok) {
+        throw new Error(`HTTP error! Status: ${res.status}`);
       }
-    } else {
-      console.log(`${key} already exists in localStorage, skipping fetch.`);
+      const data = await res.json();
+      if (!data || (property && !data[property])) {
+        throw new Error(`Invalid data format for ${key}`);
+      }
+      const value = property ? data[property] : data;
+      localStorage.setItem(key, JSON.stringify(value));
+      console.log(`${key} fetched and stored successfully!`);
+    } catch (error) {
+      console.error(`Error fetching ${key}:`, error);
     }
+  } else {
+    console.log(`${key} already exists in localStorage, skipping fetch.`);
   }
- 
-  async function fetchAndStoreAll() {
-   
-    await fetchAndStore("users", "https://dummyjson.com/users", "users");
-    await fetchAndStore("posts", "https://dummyjson.com/posts", "posts");
-    await fetchAndStore("comments", "https://dummyjson.com/comments", "comments");
-  }
+}
 
-  function getUsers() {
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-    console.log("Users fetched from localStorage:", users);
-    return users;
-  }
-  
-  function getPosts() {
-    const stored = JSON.parse(localStorage.getItem('posts'));
-    if (Array.isArray(stored)) return stored;
-    else if (stored && stored.posts) return stored.posts;
-    return [];
-  }
-  
-  function getComments() {
-    return JSON.parse(localStorage.getItem('comments')) || [];
-  }
+async function fetchAndStoreAll() {
+
+  await fetchAndStore("users", "https://dummyjson.com/users", "users");
+  await fetchAndStore("posts", "https://dummyjson.com/posts", "posts");
+  await fetchAndStore("comments", "https://dummyjson.com/comments", "comments");
+}
+
+function getUsers() {
+  const users = JSON.parse(localStorage.getItem('users')) || [];
+  console.log("Users fetched from localStorage:", users);
+  return users;
+}
+
+function getPosts() {
+  const stored = JSON.parse(localStorage.getItem('posts'));
+  if (Array.isArray(stored)) return stored;
+  else if (stored && stored.posts) return stored.posts;
+  return [];
+}
+
+function getComments() {
+  return JSON.parse(localStorage.getItem('comments')) || [];
+}
   
   function savePosts(postsArray) {
     const data = { posts: postsArray };

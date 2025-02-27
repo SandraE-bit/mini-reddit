@@ -181,7 +181,7 @@ input, textarea, select {
 
 button {
   padding: 10px;
-  background-color: #3395e5;
+  background-color: rgb(9, 118, 118);
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -191,5 +191,5 @@ button {
 
 button:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-  background-color: #0243c5;
+  background-color: rgb(3, 53, 53);
 }
