@@ -101,8 +101,7 @@ function getComments() {
       console.error("Error building user data:", error);
     }
   }
-
-  function displayPosts() {
+    function displayPosts() {
     const postsContainer = document.getElementById('postsContainer');
     if (!postsContainer) {
       console.error("Element with id 'postsContainer' not found.");
@@ -111,6 +110,7 @@ function getComments() {
     postsContainer.innerHTML = '';
     
     const posts = getPosts();
+    console.log("Posts retrieved:", getPosts());
     posts.forEach(post => {
       const user = getUserForPost(post);
       const snippet = post.body.length > 60 ? post.body.substring(0, 60) + '...' : post.body;
