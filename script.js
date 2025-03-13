@@ -3,23 +3,21 @@ const postsContainer = document.getElementById("posts-container");
 async function loadData() {
   let posts = JSON.parse(localStorage.getItem("posts"));
   let users = JSON.parse(localStorage.getItem("users"));
-
+  
   if (!posts || !users) {
     const [postsRes, usersRes] = await Promise.all([
       fetch("https://dummyjson.com/posts?limit=30"),
-      fetch("https://dummyjson.com/users?limit=100"),
+      fetch("https://dummyjson.com/users?limit=100")
     ]);
-
     const postsData = await postsRes.json();
     const usersData = await usersRes.json();
-
+    
     posts = postsData.posts;
     users = usersData.users;
-
+    
     localStorage.setItem("posts", JSON.stringify(posts));
     localStorage.setItem("users", JSON.stringify(users));
   }
-
   return { posts, users };
 }
 
@@ -42,17 +40,37 @@ async function populateUserDropdown(users) {
   });
 }
 
+async function loadComments(postId) {
+  const storedApi = localStorage.getItem(`comments_post_${postId}`);
+  let apiComments = [];
+  if (storedApi) {
+    apiComments = JSON.parse(storedApi);
+  } else {
+    const response = await fetch(`https://dummyjson.com/posts/${postId}/comments`);
+    const data = await response.json();
+    apiComments = data.comments;
+    localStorage.setItem(`comments_post_${postId}`, JSON.stringify(apiComments));
+  }
+  return apiComments;
+}
+
+async function preloadCommentsForPosts(posts) {
+  await Promise.all(posts.map(post => loadComments(post.id)));
+}
+
 async function displayPostPreviews() {
   const { posts, users } = await loadData();
-  postsContainer.innerHTML = "";  
-
+ 
+  await preloadCommentsForPosts(posts);
+  
+  postsContainer.innerHTML = "";
   posts.forEach(post => {
     const postElement = document.createElement("div");
     postElement.classList.add("post-preview");
 
     const postLink = document.createElement("a");
     postLink.href = `post.html?id=${post.id}`;
-    postLink.classList.add("post-link"); 
+    postLink.classList.add("post-link");
 
     postLink.innerHTML = `
       <h2>${post.title}</h2>
@@ -60,7 +78,7 @@ async function displayPostPreviews() {
       <p><strong>Tags:</strong> ${post.tags.join(', ')}</p>
       <p><strong>Created by:</strong> ${getUserName(post.userId, users)}</p>
     `;
-
+    
     postElement.appendChild(postLink);
     postsContainer.appendChild(postElement);
   });
@@ -80,7 +98,7 @@ async function handleCreatePost(e) {
 
   const { posts } = await loadData();
   const newPost = {
-    id: posts.length > 0 ? posts[posts.length - 1].id + 1 : 1000, 
+    id: posts.length > 0 ? posts[posts.length - 1].id + 1 : 1000,
     title,
     body,
     tags,
@@ -96,14 +114,13 @@ async function handleCreatePost(e) {
   localStorage.setItem("posts", JSON.stringify(posts));
 
   displayPostPreviews();
-
   document.getElementById("createPostForm").reset();
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
   const { users } = await loadData();
-  await populateUserDropdown(users); 
-  displayPostPreviews();  
+  await populateUserDropdown(users);
+  displayPostPreviews();
 
   const form = document.getElementById("createPostForm");
   form.addEventListener("submit", handleCreatePost);

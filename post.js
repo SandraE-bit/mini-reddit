@@ -13,7 +13,6 @@ function getUserName(userId, users) {
 async function loadComments(postId) {
   const storedApi = localStorage.getItem(`comments_post_${postId}`);
   let apiComments = [];
-
   if (storedApi) {
     apiComments = JSON.parse(storedApi);
   } else {
@@ -22,10 +21,8 @@ async function loadComments(postId) {
     apiComments = data.comments;
     localStorage.setItem(`comments_post_${postId}`, JSON.stringify(apiComments));
   }
-
   const storedCustom = JSON.parse(localStorage.getItem("customComments")) || [];
   const customForPost = storedCustom.filter(c => c.postId === postId);
-
   return [...apiComments, ...customForPost];
 }
 
@@ -48,13 +45,12 @@ async function displayPost() {
 
   const posts = JSON.parse(localStorage.getItem("posts")) || [];
   const users = JSON.parse(localStorage.getItem("users")) || [];
-
   const post = posts.find(p => p.id === postId);
   if (!post) {
     postContainer.innerHTML = "<p>Post not found</p>";
     return;
   }
-
+  
   const comments = await loadComments(postId);
 
   postContainer.innerHTML = `
@@ -64,15 +60,15 @@ async function displayPost() {
     <p><strong>Created by:</strong> ${getUserName(post.userId, users)}</p>
 
     <div class="reactions" style="display: flex; gap: 40px; margin-bottom: 20px;">
-    <div class="reaction-item" style="text-align: center;">
-      <button id="likeBtn">Like&#128077;</button>
-      <div><span id="like-count">${post.reactions?.likes ?? 0}</span></div>
+      <div class="reaction-item" style="text-align: center;">
+        <button id="likeBtn">Like&#128077;</button>
+        <div><span id="like-count">${post.reactions?.likes ?? 0}</span></div>
+      </div>
+      <div class="reaction-item" style="text-align: center;">
+        <button id="dislikeBtn">Dislike&#128078;</button>
+        <div><span id="dislike-count">${post.reactions?.dislikes ?? 0}</span></div>
+      </div>
     </div>
-    <div class="reaction-item" style="text-align: center;">
-      <button id="dislikeBtn">Dislike&#128078;</button>
-      <div><span id="dislike-count">${post.reactions?.dislikes ?? 0}</span></div>
-    </div>
-  </div>
 
     <h3>Comments:</h3>
     <div id="commentsContainer">
@@ -83,12 +79,10 @@ async function displayPost() {
         </div>
       `).join('') : '<p>No comments yet.</p>'}
     </div>
-    
-
   `;
 
   populateUserDropdown(users);
- 
+
   const commentForm = document.getElementById("commentForm");
   commentForm.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -123,32 +117,28 @@ async function displayPost() {
 
   const likeButton = document.getElementById("likeBtn");
   const dislikeButton = document.getElementById("dislikeBtn");
-  
+
   likeButton.addEventListener("click", function () {
     const likeCount = document.getElementById("like-count");
     const newLikes = parseInt(likeCount.textContent) + 1;
     likeCount.textContent = newLikes;
-  
     post.reactions.likes = newLikes;
     localStorage.setItem("posts", JSON.stringify(posts));
   });
-  
+
   dislikeButton.addEventListener("click", function () {
     const dislikeCount = document.getElementById("dislike-count");
     const newDislikes = parseInt(dislikeCount.textContent) + 1;
     dislikeCount.textContent = newDislikes;
-  
     post.reactions.dislikes = newDislikes;
     localStorage.setItem("posts", JSON.stringify(posts));
   });
 }
 
 document.getElementById("goBackButton").addEventListener("click", function () {
-  window.location.href = "index.html"; 
+  window.location.href = "index.html";
 });
 
 document.addEventListener("DOMContentLoaded", displayPost);
 
- 
-  
 
