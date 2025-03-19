@@ -71,7 +71,7 @@ async function displayPostPreviews() {
   await preloadCommentsForPosts(posts);
   
   postsContainer.innerHTML = "";
-  // Reverse the posts so that the newest appear first.
+
   posts.slice().reverse().forEach(post => {
     const postElement = document.createElement("div");
     postElement.classList.add("post-preview");

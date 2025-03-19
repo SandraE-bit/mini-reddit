@@ -40,12 +40,11 @@ body {
 h1, h2 {
   color: #fff;
 }
-/* Create Post Section */
+
 #createPostSection {
   margin-bottom: 20px;
 }
 
-/* Create Post Button */
 #createPostBtn {
   background-color: #e8601c;
   color: white;
@@ -63,12 +62,10 @@ h1, h2 {
   background-color: #e35400;
 }
 
-/* Hidden class to toggle form visibility */
 .hidden {
   display: none;
 }
 
-/* Create Post Form Container */
 #createPostFormContainer {
   margin-top: 20px;
 }
