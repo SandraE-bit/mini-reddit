@@ -3,8 +3,32 @@ body {
   font-family: 'Times New Roman', Verdana, Geneva, Tahoma, sans-serif;
   margin: 0;
   padding: 20px;
-  background-color: #267c92;
+  background-color: #000000;
   color: #000;
+  
+}
+.centered-heading {
+  text-align: center;
+}
+
+.reddit-icon {
+  color: #ff0000;
+  font-size: 1.3em;
+  margin-left: 6px;
+  vertical-align: middle;
+  transition: transform 0.3s ease;
+}
+
+.reddit-icon:hover {
+  animation: bounce 0.6s ease;
+}
+
+@keyframes bounce {
+  0%   { transform: translateY(0); }
+  30%  { transform: translateY(-10px); }
+  60%  { transform: translateY(0); }
+  80%  { transform: translateY(-5px); }
+  100% { transform: translateY(0); }
 }
 
  Main Container 
@@ -19,13 +43,16 @@ h1, h2 {
 }
 
 .post-preview {
-  background-color: #fff;
-  border: 2px solid #005f5f;
+  background-color: #c9d9e2;
+  border: 2px solid #e8601c;
   border-radius: 8px;
   padding: 20px;
-  margin-bottom: 20px;
+  width: 700px;
+  margin: 0 auto 20px auto;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: width 0s, 0s;
 }
+
 
 .post-link {
   display: block;        
@@ -40,7 +67,7 @@ h1, h2 {
 .post-preview h2 {
   margin: 0 0 10px;
   font-size: 1.5em;
-  color: #005f5f;
+  color: #e8601c;
 }
 
 .post-preview p {
@@ -52,7 +79,7 @@ form {
   max-width: 500px;
   background-color: #fff;
   padding: 20px;
-  border: 2px solid #005f5f;
+  border: 2px solid #e8601c;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -66,13 +93,7 @@ input, textarea, select {
   box-sizing: border-box;
 }
 
-body {
-  font-family: 'Times New Roman', Verdana, Geneva, Tahoma, sans-serif;
-  margin: 0;
-  padding: 20px;
-  background-color: #267c92;
-  color: #000;
-}
+
 
 .container {
   max-width: 1200px;
@@ -82,7 +103,7 @@ body {
 
 .white-box {
   background-color: #fff;
-  border: 2px solid #005f5f;
+  border: 2px solid #e8601c;
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -90,16 +111,21 @@ body {
 }
 
 .post-preview {
-  background-color: #c9d9e2;
+  background-color: #ffffff;
   border: 2px solid #005f5f;
   border-radius: 8px;
   padding: 20px;
+  width: 700px;
+  justify-content: center;
   margin-bottom: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: width 0s, 0s;
 }
 
 .post-preview:hover {
  background-color: #ffffff;
+  width: 708px;
+  height: 170px;
 }
 
 .post-link {
@@ -109,22 +135,24 @@ body {
 }
 
 #post-container {
-  background-color: #fff;
-  border: 2px solid #005f5f;
+  background-color: #ffffff;
+  border: 2px solid #e8601c;
   border-radius: 8px;
   padding: 20px;
-  margin-bottom: 20px;
+  width: 700px;
+  margin: 0 auto 20px auto; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+} 
+
 #post-container h2 {
   margin: 0 0 10px;
   font-size: 1.5em;
-  color: #005f5f;
+  color: #e8601c;
 }
 
 .comment {
   background-color: #fff;
-  border: 1px solid #ccc;
+  border: 1px solid #e8601c;
   border-radius: 6px;
   padding: 15px;
   margin-bottom: 15px;
@@ -133,15 +161,16 @@ body {
 
 form {
   background-color: #fff;
-  border: 2px solid #005f5f;
+  border: 2px solid #e8601c;
   border-radius: 8px;
   padding: 20px;
   max-width: 500px;
+  margin: 0 auto 20px auto; 
   margin-bottom: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-input, textarea, select:hover {
+input, textarea, select {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
@@ -150,10 +179,23 @@ input, textarea, select:hover {
   box-sizing: border-box;
   
 }
+form:hover {
+  color: #000;
+  
+}
+input:hover,
+textarea:hover,
+select:hover {
+  border-color: #e8601c;
+  background-color: #f0f8f8; 
+  box-shadow: 0 0 6px rgba(0, 95, 95, 0.3); 
+  transition: all 0.3s ease;
+}
+
 
 button {
   padding: 10px 20px;
-  background-color: #005f5f;
+  background-color: #e8601c;
   border: none;
   border-radius: 4px;
   color: #ffffff;
@@ -161,7 +203,7 @@ button {
 }
 
 button:hover {
-  background-color: #013f3f;
+  background-color: #ff0a0a;
 }
 
 @media (max-width: 768px) {
