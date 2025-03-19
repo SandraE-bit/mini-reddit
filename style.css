@@ -12,7 +12,7 @@ body {
 }
 
 .reddit-icon {
-  color: #ff0000;
+  color: #e8601c;
   font-size: 1.3em;
   margin-left: 6px;
   vertical-align: middle;
@@ -43,7 +43,7 @@ h1, h2 {
 }
 
 .post-preview {
-  background-color: #c9d9e2;
+  background-color: #ffffffd8;
   border: 2px solid #e8601c;
   border-radius: 8px;
   padding: 20px;
@@ -52,7 +52,11 @@ h1, h2 {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: width 0s, 0s;
 }
-
+.post-preview:hover {
+  background-color: #ffffff;
+   width: 708px;
+   height: 170px;
+ }
 
 .post-link {
   display: block;        
@@ -67,7 +71,7 @@ h1, h2 {
 .post-preview h2 {
   margin: 0 0 10px;
   font-size: 1.5em;
-  color: #e8601c;
+  color: #000000;
 }
 
 .post-preview p {
@@ -93,8 +97,6 @@ input, textarea, select {
   box-sizing: border-box;
 }
 
-
-
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -110,30 +112,6 @@ input, textarea, select {
   margin-bottom: 20px;
 }
 
-.post-preview {
-  background-color: #ffffff;
-  border: 2px solid #005f5f;
-  border-radius: 8px;
-  padding: 20px;
-  width: 700px;
-  justify-content: center;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: width 0s, 0s;
-}
-
-.post-preview:hover {
- background-color: #ffffff;
-  width: 708px;
-  height: 170px;
-}
-
-.post-link {
-  display: block;
-  color: inherit;
-  text-decoration: none;
-}
-
 #post-container {
   background-color: #ffffff;
   border: 2px solid #e8601c;
@@ -147,7 +125,7 @@ input, textarea, select {
 #post-container h2 {
   margin: 0 0 10px;
   font-size: 1.5em;
-  color: #e8601c;
+  color: #000000;
 }
 
 .comment {
@@ -179,10 +157,7 @@ input, textarea, select {
   box-sizing: border-box;
   
 }
-form:hover {
-  color: #000;
-  
-}
+
 input:hover,
 textarea:hover,
 select:hover {
@@ -191,7 +166,6 @@ select:hover {
   box-shadow: 0 0 6px rgba(0, 95, 95, 0.3); 
   transition: all 0.3s ease;
 }
-
 
 button {
   padding: 10px 20px;
@@ -203,7 +177,7 @@ button {
 }
 
 button:hover {
-  background-color: #ff0a0a;
+  background-color: #ff640a;
 }
 
 @media (max-width: 768px) {
