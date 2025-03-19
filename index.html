@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,23 +13,27 @@
     <h1>Mini Reddit <i class="fab fa-reddit reddit-icon"></i></h1>
   </div>
 
+  <div id="createPostSection">
+    <button id="createPostBtn" type="button">Create a New Post</button>
+    <div id="createPostFormContainer" class="hidden">
+      <h2 class="centered-heading"></h2>
+      <form id="createPostForm">
+        <input type="text" id="postTitle" placeholder="Title" required>
+        <textarea id="postBody" placeholder="Content&#128393;" required></textarea>
+        <input type="text" id="postTags" placeholder="Tags (Separated by comma)" required>
+        <label for="postUser">Select a user:</label>
+        <select id="postUser" required>
+          <option value="">Select user</option>
+        </select>
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </div>
+  
+  <!-- Posts Container -->
   <div id="posts-container"></div>
-
-  <h2 class="centered-heading">Create a New Post</h2>
-  <form id="createPostForm">
-    <input type="text" id="postTitle" placeholder="Title" required>
-    <textarea id="postBody" placeholder="Content&#128393;" required></textarea>
-    <input type="text" id="postTags" placeholder="Tags (Separated by comma)" required>
-    <label for="postUser">Select a user:</label>
-    <select id="postUser" required>
-      <option value="">Select user</option>
-    </select>
-
-    <button type="submit">Send</button>
-  </form>
-
+  
   <hr>
   <script src="script.js"></script>
 </body>
 </html>
-

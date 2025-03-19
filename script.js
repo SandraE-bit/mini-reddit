@@ -54,6 +54,13 @@ async function loadComments(postId) {
   return apiComments;
 }
 
+const createPostBtn = document.getElementById('createPostBtn');
+const createPostFormContainer = document.getElementById('createPostFormContainer');
+
+createPostBtn.addEventListener('click', function() {
+  createPostFormContainer.classList.toggle('hidden');
+});
+
 async function preloadCommentsForPosts(posts) {
   await Promise.all(posts.map(post => loadComments(post.id)));
 }
@@ -64,7 +71,8 @@ async function displayPostPreviews() {
   await preloadCommentsForPosts(posts);
   
   postsContainer.innerHTML = "";
-  posts.forEach(post => {
+  // Reverse the posts so that the newest appear first.
+  posts.slice().reverse().forEach(post => {
     const postElement = document.createElement("div");
     postElement.classList.add("post-preview");
 
